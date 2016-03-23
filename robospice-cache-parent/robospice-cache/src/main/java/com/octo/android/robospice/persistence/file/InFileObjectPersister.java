@@ -148,11 +148,13 @@ public abstract class InFileObjectPersister<T> extends ObjectPersister<T> {
         });
 
         boolean allDeleted = true;
-        for (File cacheFile : cacheFileList) {
-            allDeleted = cacheFile.delete() && allDeleted;
-        }
-        if (allDeleted || cacheFileList.length == 0) {
-            Ln.d("Some file could not be deleted from cache.");
+        if (cacheFileList != null) {
+            for (File cacheFile : cacheFileList) {
+                allDeleted = cacheFile.delete() && allDeleted;
+            }
+            if (allDeleted || cacheFileList.length == 0) {
+                Ln.d("Some file could not be deleted from cache.");
+            }
         }
     }
 
